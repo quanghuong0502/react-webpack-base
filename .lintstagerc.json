@@ -1,0 +1,5 @@
+{
+  "*.{css, scss}": ["stylelint --fix"],
+  "*.{js,jsx,ts,tsx}": ["organize-imports-cli", "eslint --fix --cache", "prettier --write"],
+  "!*.{js,jsx,ts,tsx}": ["prettier --write"]
+}

@@ -1,0 +1,194 @@
+{
+  "root": true,
+  "plugins": ["unused-imports"],
+  "extends": [
+    "eslint:recommended",
+    "airbnb",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": ["./tsconfig.eslint.json"],
+    "tsconfigRootDir": "."
+  },
+  "rules": {
+    "unused-imports/no-unused-imports": "error",
+    "import/no-extraneous-dependencies": "off",
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "no-eval": "error",
+        "no-implied-eval": "error",
+        "no-promise-executor-return": "error",
+        "no-await-in-loop": "error",
+        "require-await": "error",
+        "no-console": "error",
+        "no-empty": "error",
+        "no-template-curly-in-string": "error",
+        "no-negated-condition": "error",
+        "no-self-compare": "error",
+        "yoda": "error",
+        "complexity": ["error", 14],
+        "no-magic-numbers": [
+          "warn",
+          {
+            "ignore": [-1, 0, 1],
+            "ignoreArrayIndexes": true,
+            "ignoreDefaultValues": true,
+            "ignoreClassFieldInitialValues": true
+          }
+        ],
+        "no-unused-vars": [
+          "error",
+          {
+            "argsIgnorePattern": "^_",
+            "destructuredArrayIgnorePattern": "^_",
+            "ignoreRestSiblings": true
+          }
+        ],
+        "spaced-comment": [
+          "error",
+          "always",
+          {
+            "markers": ["/"]
+          }
+        ],
+        "max-params": ["off"],
+        "max-lines": ["off"],
+        "max-lines-per-function": ["off"],
+        "react-hooks/exhaustive-deps": "off",
+        "react-hooks/rules-of-hooks": "warn",
+        "import/extensions": "off",
+        "react/jsx-filename-extension": ["error", { "extensions": [".jsx", ".tsx"] }],
+        "react/function-component-definition": [
+          "error",
+          {
+            "namedComponents": "arrow-function",
+            "unnamedComponents": "arrow-function"
+          }
+        ],
+        "react/prop-types": "off",
+        "react/jsx-props-no-spreading": [
+          "warn",
+          {
+            "html": "ignore",
+            "custom": "enforce"
+          }
+        ],
+        "react/require-default-props": "off"
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@typescript-eslint/recommended-requiring-type-checking", "plugin:rxjs/recommended"],
+      "rules": {
+        "no-empty-function": "off",
+        "@typescript-eslint/no-empty-function": [
+          "error",
+          {
+            "allow": ["constructors"]
+          }
+        ],
+        "quotes": [
+          "error",
+          "single",
+          {
+            "allowTemplateLiterals": true,
+            "avoidEscape": true
+          }
+        ],
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            "argsIgnorePattern": "^_",
+            "destructuredArrayIgnorePattern": "^_",
+            "ignoreRestSiblings": true
+          }
+        ],
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-non-null-assertion": "error",
+        "@typescript-eslint/explicit-function-return-type": [
+          "error",
+          {
+            "allowExpressions": true
+          }
+        ],
+        "@typescript-eslint/no-unnecessary-type-assertion": "warn",
+        "@typescript-eslint/restrict-template-expressions": "warn",
+        "@typescript-eslint/no-floating-promises": "warn",
+        "require-await": "off",
+        "@typescript-eslint/require-await": "warn",
+        "@typescript-eslint/restrict-plus-operands": "warn",
+        "@typescript-eslint/await-thenable": "warn",
+        "@typescript-eslint/unbound-method": "warn",
+        "rxjs/no-async-subscribe": "warn",
+        "rxjs/no-implicit-any-catch": ["warn"],
+        "@typescript-eslint/no-unsafe-enum-comparison": "warn",
+        "@typescript-eslint/no-redundant-type-constituents": "warn",
+        "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }]
+      }
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx", "*/__mock__/*"],
+      "env": {
+        "jest": true
+      },
+      "rules": {
+        "max-lines": "off",
+        "no-empty-function": "off",
+        "no-magic-numbers": "off",
+        "@typescript-eslint/no-empty-function": [
+          "error",
+          {
+            "allow": ["arrowFunctions"]
+          }
+        ],
+        "max-lines-per-function": ["off"],
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/unbound-method": "off",
+        "@typescript-eslint/no-unsafe-argument": "off"
+      }
+    },
+    {
+      "files": ["*.json"],
+      "parser": "jsonc-eslint-parser",
+      "rules": {}
+    }
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.eslint.json"
+      },
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
+}
