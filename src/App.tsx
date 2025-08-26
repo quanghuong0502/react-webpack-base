@@ -1,7 +1,11 @@
-import './styles/global.css';
+import { PrimaryLayout } from '@/layouts/primary';
 
 const App: React.FC = () => {
-  return <div>Hello 12</div>;
+  return (
+    <PrimaryLayout>
+      <div>hello</div>
+    </PrimaryLayout>
+  );
 };
 
 export default App;

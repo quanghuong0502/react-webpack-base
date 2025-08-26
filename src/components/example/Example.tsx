@@ -1,7 +1,7 @@
 import { useAppSelector } from '@/hooks';
 import { selectExample } from '@/store';
 import clsx from 'clsx';
-import styles from './example.module.scss';
+import styles from './Example.module.scss';
 
 interface IExampleProps {
   title: string;

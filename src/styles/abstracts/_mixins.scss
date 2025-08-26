@@ -1,0 +1,32 @@
+@use 'sass:list';
+
+/* Flex Box */
+$flex-directions: row, row-reverse, column, column-reverse;
+$justify-contents: flex-start, flex-end, center, space-between, space-around, space-evenly;
+$align-items: stretch, flex-start, flex-end, center, baseline;
+$align-contents: stretch, flex-start, flex-end, center, space-between, space-around;
+$flex-wraps: nowrap, wrap, wrap-reverse;
+
+@mixin flex-container($direction: row, $justify: null, $align: null, $wrap: null, $gap: null) {
+  display: flex;
+
+  @if list.index($flex-directions, $direction) {
+    flex-direction: $direction;
+  }
+
+  @if list.index($justify-contents, $justify) {
+    justify-content: $justify;
+  }
+
+  @if list.index($align-items, $align) {
+    align-items: $align;
+  }
+
+  @if list.index($flex-wraps, $wrap) {
+    flex-wrap: $wrap;
+  }
+
+  @if $gap {
+    gap: $gap;
+  }
+}

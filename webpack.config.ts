@@ -21,7 +21,8 @@ const configuration: webpack.Configuration & {
   output: {
     path: getPath('./dist'),
     filename: '[name].[contenthash].js',
-    publicPath: '/'
+    publicPath: '/',
+    clean: true
   },
 
   devtool: 'eval-source-map',
@@ -30,8 +31,18 @@ const configuration: webpack.Configuration & {
     rules: [
       {
         test: /\.(js|jsx|ts|tsx)$/,
-        exclude: /node_modules/,
-        use: 'swc-loader'
+        exclude: {
+          and: [/node_modules/],
+          not: [
+            // Except for a few of them that needs to be transpiled because they use modern syntax
+          ]
+        },
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true
+          }
+        }
       },
 
       ...createStyleRules({ isProduction: false }),
@@ -56,14 +67,13 @@ const configuration: webpack.Configuration & {
 
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Code Editor',
+      title: 'React Webpack Base',
       template: getPath('./src/index.html')
     })
   ],
 
   resolve: {
     extensions: extensionsToResolve,
-
     plugins: [
       new TsconfigPathsPlugin({
         extensions: extensionsToResolve
@@ -75,14 +85,15 @@ const configuration: webpack.Configuration & {
     open: true,
     port: 3000,
     host: '0.0.0.0',
-    hot: 'only',
+    hot: true,
     liveReload: true,
     compress: true,
     historyApiFallback: true,
     allowedHosts: ['all'],
     client: {
       overlay: true
-    }
+    },
+    static: getPath('./public')
   }
 };
 

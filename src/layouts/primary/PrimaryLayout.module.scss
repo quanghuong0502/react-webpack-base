@@ -1,0 +1,20 @@
+@use '@/styles/abstracts/_mixins.scss' as mixins;
+
+.mainLayout {
+  min-height: 100vh;
+  background-color: #fff;
+  @include mixins.flex-container($direction: column);
+}
+
+.header {
+  height: 40px;
+}
+
+.footer {
+  height: 80px;
+}
+
+.content {
+  background-color: #f5f5f5;
+  flex: 1;
+}
