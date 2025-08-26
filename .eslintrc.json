@@ -28,6 +28,7 @@
   "rules": {
     "unused-imports/no-unused-imports": "error",
     "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off",
     "prettier/prettier": ["error", { "endOfLine": "auto" }]
   },
   "overrides": [
